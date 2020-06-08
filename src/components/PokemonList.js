@@ -60,42 +60,46 @@ export const PokemonList = () => {
   } else {
     return (
       <>
-        <div className="button-group pull-left">
-          <button className={`btn coreBtn ${gen == '1' ? 'selected' : ''}`} value="1" onClick={onClick}>
-            <span>Kanto Region - </span>
-            <span>Gen 1</span>
-          </button>
-          <button className={`btn coreBtn ${gen == '2' ? 'selected' : ''}`} value="2" onClick={onClick}>
-            <span>Johto Region - </span>
-            <span>Gen 2</span>
-          </button>
-          <button className={`btn coreBtn ${gen == '3' ? 'selected' : ''}`} value="3" onClick={onClick}>
-            <span>Hoenn Region - </span>
-            <span>Gen 3</span>
-          </button>
-          <button className={`btn coreBtn ${gen == '4' ? 'selected' : ''}`} value="4" onClick={onClick}>
-            <span>Sinnoh Region - </span>
-            <span>Gen 4</span>
-          </button>
-          <button className={`btn coreBtn ${gen == '5' ? 'selected' : ''}`} value="5" onClick={onClick}>
-            <span>Unova Region - </span>
-            <span>Gen 5</span></button>
-          <button className={`btn coreBtn ${gen == '6' ? 'selected' : ''}`} value="6" onClick={onClick}>
-            <span>Kalos Region - </span>
-            <span>Gen 6</span></button>
-          <button className={`btn coreBtn ${gen == '7' ? 'selected' : ''}`} value="7" onClick={onClick}>
-            <span>Alola Region - </span>
-            <span>Gen 7</span></button>
-          <button className={`btn coreBtn ${gen == '8' ? 'selected' : ''}`} value="8" onClick={onClick}>
-            <span>Megas - </span>
-            <span>Others</span></button>
+        <div className="custom-container">
+          <div className="button-group pull-left">
+            <button className={`btn coreBtn ${gen == '1' ? 'selected' : ''}`} value="1" onClick={onClick}>
+              <span>Kanto Region</span>
+              <span><b>Gen 1</b></span>
+            </button>
+            <button className={`btn coreBtn ${gen == '2' ? 'selected' : ''}`} value="2" onClick={onClick}>
+              <span>Johto Region</span>
+              <span><b>Gen 2</b></span>
+            </button>
+            <button className={`btn coreBtn ${gen == '3' ? 'selected' : ''}`} value="3" onClick={onClick}>
+              <span>Hoenn Region</span>
+              <span><b>Gen 3</b></span>
+            </button>
+            <button className={`btn coreBtn ${gen == '4' ? 'selected' : ''}`} value="4" onClick={onClick}>
+              <span>Sinnoh Region</span>
+              <span><b>Gen 4</b></span>
+            </button>
+            <button className={`btn coreBtn ${gen == '5' ? 'selected' : ''}`} value="5" onClick={onClick}>
+              <span>Unova Region</span>
+              <span><b>Gen 5</b></span></button>
+            <button className={`btn coreBtn ${gen == '6' ? 'selected' : ''}`} value="6" onClick={onClick}>
+              <span>Kalos Region</span>
+              <span><b>Gen 6</b></span></button>
+            <button className={`btn coreBtn ${gen == '7' ? 'selected' : ''}`} value="7" onClick={onClick}>
+              <span>Alola Region</span>
+              <span><b>Gen 7</b></span></button>
+            <button className={`btn coreBtn ${gen == '8' ? 'selected' : ''}`} value="8" onClick={onClick}>
+              <span>Megas</span>
+              <span><b>Other</b></span></button>
+          </div>
+          <div className="card-grid">
+            {pokemonList ? pokemonList.map(item => (
+              <PokemonThumb key={item.name} poke={item} />
+            )) : null}
+          </div>
         </div>
 
-        <div className="container card-grid">
-          {pokemonList ? pokemonList.map(item => (
-            <PokemonThumb key={item.name} poke={item} />
-          )) : null}
-        </div>
+
+
       </>
     )
   }

@@ -6,7 +6,7 @@ export const Pokemon = props => {
   const [currPokemon, setPokemon] = useState({});
 
   useEffect(() => {
-    getPokemon(props.match.params.id);
+    getPokemon(props.match.params.name);
   }, []);
 
   useEffect(() => {
@@ -21,16 +21,34 @@ export const Pokemon = props => {
     )
   } else {
     return (
-      <div class="pokeContainer">
-        TO DO - Pokemon stats go here <br />
-        {props.match.params.id}
-        {currPokemon.abilities[0].ability.name}
-        <img src={`https://img.pokemondb.net/artwork/${props.match.params.id}.jpg`} alt="" />
+      <div className="container pokeContainer">
+        <div className="pokeHeader">
+          <div>
+            <img src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${props.match.params.id}.png`} alt="" />
+          </div>
+          <div>
+            TO DO - Pokemon stats go here <br />
+            #{props.match.params.id} - {props.match.params.name}
+            <br />
+            Abilities - {currPokemon.abilities[0].ability.name}
+            <br />
+            Types -
+          </div>
+        </div>
+
+        <hr />
+
         <div className="sprites">
-          Sprites:
+          V Sprites <br />
           {Object.values(currPokemon.sprites).map(item => item ? (
             <img src={item} key={item} alt="" />
           ) : null)}
+        </div>
+        <div className="stats">
+          V Stats <br />
+        </div>
+        <div className="evolution">
+          V Evolutions <br />
         </div>
       </div>
     )

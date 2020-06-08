@@ -12,11 +12,16 @@ body {
   border-radius: 10px;
 }
 
+.pokeHeader {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
   grid-gap: 1em;
-
+  margin-right: 2em;
 }
 
 .card {
@@ -64,10 +69,6 @@ background: radial-gradient(circle, rgba(0,212,255,1) 0%, rgba(255,255,255,1) 70
   border-bottom-right-radius: 25px;
 }
 
-.button-group {
-  position: fixed;
-}
-
 .btn:hover {
   background: rgb(42,182,255);
 }
@@ -100,8 +101,8 @@ background: radial-gradient(circle, rgba(0,212,255,1) 0%, rgba(255,255,255,1) 70
 
 .coreBtn:hover {
   transform: scale(1, 1);
-  padding-left: 130px;
-  padding-right: 20px;
+  padding-left: 110px;
+  padding-right: 10px;
   background-position: 5px center;
   color: white;
 }
@@ -113,22 +114,35 @@ background: radial-gradient(circle, rgba(0,212,255,1) 0%, rgba(255,255,255,1) 70
 }
 
 .coreBtn:hover span:nth-child(1) {
-  left: 20px;
+  left: 5px;
 }
 
-.coreBtn:nth-child(1) {
-  margin-right: 1em;
+.coreBtn {
+  margin-right: 0.5em;
 }
 
 .selected {
   background: rgb(42,182,255);
   color: white;
   transform: scale(1, 1);
-  padding-left: 130px;
-  padding-right: 20px;
+  padding-left: 110px;
+  padding-right: 10px;
   background-position: 5px center;
 }
 
 .selected span:nth-child(1) {
-  left: 20px;
+  left: 5px;
+}
+
+.custom-container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
 }

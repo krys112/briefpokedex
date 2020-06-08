@@ -23,7 +23,7 @@ export const PokemonThumb = (poke) => {
 
   return (
     <div className="card text-center">
-      <Link to={`pokemon/${poke.poke.name}`}>
+      <Link to={`pokemon/${s}/${poke.poke.name}`}>
         <img
           className="card-img-top mx-auto circle-icon"
           src={`https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${poke.poke.name}.png`}
