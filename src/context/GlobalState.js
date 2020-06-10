@@ -23,8 +23,6 @@ export const GlobalProvider = ({ children }) => {
   async function getAllPokemon(offset, limit) {
     try {
       const res = await axios.get(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
-
-      console.log('all pokemans', res.data.results);
       dispatch({
         type: 'GET_ALL_POKEMON',
         payload: res.data.results

@@ -17,6 +17,11 @@ body {
   grid-template-columns: 1fr 3fr;
 }
 
+.moreInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
@@ -145,4 +150,53 @@ background: radial-gradient(circle, rgba(0,212,255,1) 0%, rgba(255,255,255,1) 70
 
 .blue {
   background-color: blue;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Pokemon Types */
+.fire {
+  background-color: red;
+}
+
+.flying {
+  background-color: cyan;
+}
+
+.water {
+  background-color: blue;
+}
+
+.grass {
+  background-color: green;
+}
+
+.bug {
+  background-color: lime;
+}
+
+.poison {
+  background-color: purple;
+}
+
+.normal {
+  background-color: grey;
+}
+
+.electric {
+  background-color: yellow;
+}
+
+.ground {
+  background-color: orange;
+}
+
+.rock {
+  background-color: brown;
+}
+
+.fairy {
+  background-color: pink;
 }

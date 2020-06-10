@@ -97,11 +97,7 @@ export const PokemonList = () => {
             )) : null}
           </div>
         </div>
-
-
-
       </>
     )
   }
-
 }
