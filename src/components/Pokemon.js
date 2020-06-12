@@ -14,12 +14,19 @@ export const Pokemon = props => {
   }, [pokemon]);
 
   const onClick = e => {
-    if (e.target.innerHTML[0] == 'V') {
-      e.target.innerHTML = e.target.innerHTML.replace('V', '^');
+    // Will lead to syntax error if classList does not exist
+    let target = e.target;
+    if (target.classList[0].includes('toggleBtn')) {
+      target = target.firstElementChild;
+      e.target.nextElementSibling.nextElementSibling.classList.toggle('hidden');
     } else {
-      e.target.innerHTML = e.target.innerHTML.replace('^', 'V');
+      target.parentNode.nextElementSibling.nextElementSibling.classList.toggle('hidden');
     }
-    e.target.nextElementSibling.nextElementSibling.classList.toggle('hidden');
+    if (target.classList[1].includes('up')) {
+      target.classList = 'fa fa-chevron-down';
+    } else {
+      target.classList = 'fa fa-chevron-up';
+    }
   }
 
   if (currPokemon.abilities === undefined) {
@@ -38,16 +45,16 @@ export const Pokemon = props => {
           </div>
           <div>
             TO DO - Pokemon stats go here <br />
-            <h3>#{props.match.params.id} - {props.match.params.name}</h3>
+            <h3>#{props.match.params.id} - {props.match.params.name.toUpperCase()}</h3>
             <div className="moreInfo">
               <div>
                 <p>Abilities</p>
                 {Object.values(currPokemon.abilities).map((item, index) => (
-                  <span key={index}>{item.ability.name} </span>
+                  <div className={`type ${item.is_hidden ? "is-hidden" : "normal"}`} key={index}>{item.ability.name.toUpperCase()} </div>
                 ))}
                 <p>Types</p>
                 {Object.values(currPokemon.types).map((item, index) => (
-                  <span className={item.type.name} key={index}>{item.type.name.toUpperCase()} </span>
+                  <div className={`type ${item.type.name}`} key={index}><span className="type-text">{item.type.name.toUpperCase()}</span></div>
                 ))}
               </div>
               <div>
@@ -56,32 +63,29 @@ export const Pokemon = props => {
               </div>
             </div>
           </div>
-
-
-
         </div>
 
         <hr />
 
-        <button onClick={onClick}>
-          V Sprites
+        <button className='toggleBtn' onClick={onClick}>
+          <i className="fa fa-chevron-up" aria-hidden="true"></i> Sprites
         </button> <br />
         <div className="sprites">
           {Object.values(currPokemon.sprites).map(item => item ? (
             <img src={item} key={item} alt="" />
           ) : null)}
         </div>
-        <button onClick={onClick}>
-          V Stats
+        <button className='toggleBtn' onClick={onClick}>
+          <i className="fa fa-chevron-up" aria-hidden="true"></i> Stats
         </button> <br />
         <div className="stats">
           {Object.values(currPokemon.stats).map((item, index) => (
-            <div key={index}>{item.stat.name}: {item.base_stat}</div>
+            <div key={index}><p>{item.stat.name.toUpperCase()}</p><p>{item.base_stat}</p></div>
           ))}
           <br />
         </div>
-        <button onClick={onClick}>
-          V Evolutions
+        <button className='toggleBtn' onClick={onClick}>
+          <i className="fa fa-chevron-up" aria-hidden="true"></i> Evolutions
         </button> <br />
         <div className="evolution">
           Evolution chain goes here
