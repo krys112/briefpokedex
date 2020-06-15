@@ -29,6 +29,20 @@ export const Pokemon = props => {
     }
   }
 
+  const toFeet = height => {
+    let cm = height * 10;
+    let feet = cm / 30.48;
+    if (feet % 1 > 0.96) {
+      feet = Math.round(feet);
+    }
+    let inches = Math.round((feet % 1) * 12);
+    return `${Math.floor(feet)}'${inches}"`;
+  }
+
+  const toPounds = weight => {
+    return (Math.round((weight * 2.205) * 10) / 10);
+  }
+
   if (currPokemon.abilities === undefined) {
     return (
       <div>
@@ -44,22 +58,23 @@ export const Pokemon = props => {
             <img src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${props.match.params.id}.png`} alt="" />
           </div>
           <div>
-            TO DO - Pokemon stats go here <br />
             <h3>#{props.match.params.id} - {props.match.params.name.toUpperCase()}</h3>
             <div className="moreInfo">
               <div>
-                <p>Abilities</p>
+                <h4>Abilities</h4>
                 {Object.values(currPokemon.abilities).map((item, index) => (
                   <div className={`type ${item.is_hidden ? "is-hidden" : "normal"}`} key={index}>{item.ability.name.toUpperCase()} </div>
                 ))}
-                <p>Types</p>
+                <h4>Types</h4>
                 {Object.values(currPokemon.types).map((item, index) => (
                   <div className={`type ${item.type.name}`} key={index}><span className="type-text">{item.type.name.toUpperCase()}</span></div>
                 ))}
               </div>
               <div>
-                <p>Height: {parseFloat(currPokemon.height / 10)}m</p>
-                <p>Weight: {parseFloat(currPokemon.weight / 10)}kg</p>
+                <h4>Height</h4>
+                <p>{parseFloat(currPokemon.height / 10)}m / {toFeet(currPokemon.height)}</p>
+                <h4>Weight</h4>
+                <p>{parseFloat(currPokemon.weight / 10)}kg / {toPounds(currPokemon.weight / 10)}lbs</p>
               </div>
             </div>
           </div>
