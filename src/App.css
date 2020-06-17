@@ -2,6 +2,16 @@
   --primary-color: #A22020;
 }
 
+.popup {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, 0%);
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
 body {
   background: var(--primary-color);
   color: rgb(255, 255, 255);
@@ -14,7 +24,7 @@ h3 {
 }
 
 .pokeContainer {
-  background: rgba(0,0,0,0.5);
+  background: #343a40;
   border-radius: 10px;
   padding: 1em;
 }
@@ -22,6 +32,15 @@ h3 {
 .pokeHeader {
   display: grid;
   grid-template-columns: 1fr 3fr;
+}
+
+.close-btn {
+  float: right;
+}
+
+.close-btn:hover {
+  color: red;
+  cursor: pointer;
 }
 
 .moreInfo {

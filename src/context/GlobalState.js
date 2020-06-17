@@ -8,6 +8,7 @@ const initialState = {
   originalList: [],
   pokeData: [],
   pokemon: {},
+  selectedPoke: {},
   error: null,
   loading: true
 }
@@ -65,16 +66,46 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  async function setSelectedPoke(id) {
+    try {
+      dispatch({
+        type: 'SELECT_POKEMON',
+        payload: id
+      });
+    } catch (err) {
+      dispatch({
+        type: 'SERVER_ERROR',
+        payload: err.response.data.error
+      });
+    }
+  }
+
+  async function deselectPoke() {
+    try {
+      dispatch({
+        type: 'DESELECT_POKEMON'
+      });
+    } catch (err) {
+      dispatch({
+        type: 'SERVER_ERROR',
+        payload: err.response.data.error
+      })
+    }
+  }
+
   return (<GlobalContext.Provider value={{
     pokemonList: state.pokemonList,
     originalList: state.originalList,
     pokemon: state.pokemon,
     pokeData: state.pokeData,
+    selectedPoke: state.selectedPoke,
     error: state.error,
     loading: state.loading,
     getAllPokemon,
     getPokemon,
-    filterPokemon
+    filterPokemon,
+    setSelectedPoke,
+    deselectPoke
   }}>
     {children}
   </GlobalContext.Provider>);

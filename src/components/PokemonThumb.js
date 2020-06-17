@@ -1,7 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 
 export const PokemonThumb = (poke) => {
+  const { selectedPoke, setSelectedPoke } = useContext(GlobalContext);
+
   let id = 0;
 
   id = poke.poke.url.match(/\d*\/$/);
@@ -21,16 +23,18 @@ export const PokemonThumb = (poke) => {
     return true;
   }
 
+  const onClick = (e) => {
+    setSelectedPoke({ s: s, poke: poke.poke.name });
+  }
+
   return (
-    <div className="card text-center">
-      <Link to={`pokemon/${s}/${poke.poke.name}`}>
-        <img
-          className="card-img-top mx-auto circle-icon"
-          src={`https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${poke.poke.name}.png`}
-          alt=""
-          onError={imageLink}
-        />
-      </Link>
+    <div className="card text-center" onClick={onClick}>
+      <img
+        className="card-img-top mx-auto circle-icon"
+        src={`https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${poke.poke.name}.png`}
+        alt=""
+        onError={imageLink}
+      />
       <div className="card-body">
         <h5 className="card-title">
           #{s}

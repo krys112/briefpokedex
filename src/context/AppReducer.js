@@ -27,6 +27,16 @@ export default (state, action) => {
         ...state,
         pokemonList: action.payload
       }
+    case 'SELECT_POKEMON':
+      return {
+        ...state,
+        selectedPoke: action.payload
+      }
+    case 'DESELECT_POKEMON':
+      return {
+        ...state,
+        selectedPoke: {}
+      }
     default:
       return state;
   }

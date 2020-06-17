@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 
-export const Pokemon = props => {
-  const { pokemon, getPokemon } = useContext(GlobalContext);
+
+
+export const Pokemon = (props) => {
+  const { pokemon, getPokemon, deselectPoke } = useContext(GlobalContext);
   const [currPokemon, setPokemon] = useState({});
 
   useEffect(() => {
-    getPokemon(props.match.params.name);
+    getPokemon(props.poke.poke);
   }, []);
 
   useEffect(() => {
@@ -43,6 +45,10 @@ export const Pokemon = props => {
     return (Math.round((weight * 2.205) * 10) / 10);
   }
 
+  const close = (e) => {
+    deselectPoke();
+  }
+
   if (currPokemon.abilities === undefined) {
     return (
       <div>
@@ -55,10 +61,14 @@ export const Pokemon = props => {
         <div className="pokeHeader">
           {console.log('stats are ', currPokemon)}
           <div>
-            <img src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${props.match.params.id}.png`} alt="" />
+            <img src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${props.poke.s}.png`} alt="" />
           </div>
           <div>
-            <h3>#{props.match.params.id} - {props.match.params.name.toUpperCase()}</h3>
+            <h3>
+              #{props.poke.s} - {props.poke.poke.toUpperCase()}
+              <span className="close-btn" onClick={close}>X</span>
+            </h3>
+
             <div className="moreInfo">
               <div>
                 <h4>Abilities</h4>
@@ -109,3 +119,4 @@ export const Pokemon = props => {
     )
   }
 }
+

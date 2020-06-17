@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 
+import OutsideAlerter from './utils/OutsideAlerter';
+
 import { PokemonThumb } from './PokemonThumb';
+import { Pokemon } from './Pokemon';
 
 export const PokemonList = () => {
-  const { getAllPokemon, pokemonList } = useContext(GlobalContext);
+  const { getAllPokemon, pokemonList, selectedPoke, deselectPoke } = useContext(GlobalContext);
   const [gen, setGen] = useState(1);
 
   useEffect(() => {
@@ -95,6 +98,13 @@ export const PokemonList = () => {
             {pokemonList ? pokemonList.map(item => (
               <PokemonThumb key={item.name} poke={item} />
             )) : null}
+            {selectedPoke.poke !== undefined ? (
+              <OutsideAlerter>
+                <div className="popup">
+                  <Pokemon poke={selectedPoke} />
+                </div>
+              </OutsideAlerter>
+            ) : null}
           </div>
         </div>
       </>
