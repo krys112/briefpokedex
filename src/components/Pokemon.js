@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../context/GlobalState';
-
-
+import { StatProgress } from './StatProgress';
 
 export const Pokemon = (props) => {
   const { pokemon, getPokemon, deselectPoke } = useContext(GlobalContext);
@@ -47,6 +46,10 @@ export const Pokemon = (props) => {
 
   const close = (e) => {
     deselectPoke();
+  }
+
+  const statRank = stat => {
+    return '15%';
   }
 
   if (currPokemon.abilities === undefined) {
@@ -103,9 +106,15 @@ export const Pokemon = (props) => {
         <button className='toggleBtn' onClick={onClick}>
           <i className="fa fa-chevron-up" aria-hidden="true"></i> Stats
         </button> <br />
+
+
         <div className="stats">
           {Object.values(currPokemon.stats).map((item, index) => (
-            <div key={index}><p>{item.stat.name.toUpperCase()}</p><p>{item.base_stat}</p></div>
+            <div className="stat-data" key={index}>
+              <p><strong>{item.stat.name.toUpperCase()}</strong></p>
+              <p>{item.base_stat}</p>
+              <StatProgress name={item.stat.name} stat={item.base_stat} />
+            </div>
           ))}
           <br />
         </div>
