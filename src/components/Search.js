@@ -9,7 +9,10 @@ export const Search = () => {
   const onChange = e => {
     let value = e.target.value;
     setName(value);
-    let newList = originalList.filter(item => item.name.includes(value));
+    let newList = originalList.filter(item => item.url.match(/(\d*)\/$/)[1].startsWith(value));
+    if (newList.length === 0) {
+      newList = originalList.filter(item => item.name.includes(value));
+    }
     filterPokemon(newList);
   }
 
