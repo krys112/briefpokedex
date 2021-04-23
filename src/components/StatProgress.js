@@ -1,25 +1,24 @@
-import React from 'react';
+import React from "react";
 
 export const StatProgress = (props) => {
-  console.log('proprs are ', props);
   let maxStat;
   switch (props.name) {
-    case 'hp':
+    case "hp":
       maxStat = 255;
       break;
-    case 'attack':
+    case "attack":
       maxStat = 190;
       break;
-    case 'defense':
+    case "defense":
       maxStat = 230;
       break;
-    case 'special-attack':
+    case "special-attack":
       maxStat = 194;
       break;
-    case 'special-defense':
+    case "special-defense":
       maxStat = 230;
       break;
-    case 'speed':
+    case "speed":
       maxStat = 180;
       break;
   }
@@ -32,8 +31,7 @@ export const StatProgress = (props) => {
         className="progress-bar"
         role="progressbar"
         style={{ width: `${percent}%` }}
-      >
-      </div>
+      ></div>
     </div>
-  )
-}
+  );
+};
