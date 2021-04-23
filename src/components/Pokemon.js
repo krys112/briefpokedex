@@ -56,7 +56,6 @@ export const Pokemon = (props) => {
     return (
       <div className="container pokeContainer">
         <div className="pokeHeader">
-          {console.log("stats are ", currPokemon)}
           <div>
             <img
               src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${props.poke.s}.png`}
